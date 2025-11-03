@@ -1,6 +1,8 @@
 package hu.flamingo.app.flamingo;
 
+import hu.flamingo.app.flamingo.dao.UserDao;
 import hu.flamingo.app.flamingo.db.DatabaseManager;
+import hu.flamingo.app.flamingo.model.User;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -9,6 +11,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.List;
 
 public class HelloApplication extends Application {
     @Override
@@ -21,18 +24,23 @@ public class HelloApplication extends Application {
     }
 
     public static void main(String[] args) {
-        System.out.println("Adatbázis kapcsolat tesztelése...");
-        try (Connection conn = DatabaseManager.getConnection()) {
-            if (conn != null) {
-                System.out.println("--- SIKER! ---");
-                System.out.println("A 'flamingo_data.sqlite' fájl sikeresen létrehozva és a kapcsolat él.");
-                System.out.println("A fájlt a 'data' mappában találja a projekt gyökerében.");
+        System.out.println("Alkalmazás indítása... Adatbázis séma ellenőrzése...");
+        DatabaseManager.initializeDatabase();
+        System.out.println("Adatbázis készen áll.");
+        System.out.println("--- AKTÍV FELHASZNÁLÓK LEKÉRDEZÉSE (DAO TESZT) ---");
+        UserDao userDao = new UserDao();
+        List<User> aktivFelhasznalok = userDao.getAllActiveUsers();
+        if (aktivFelhasznalok.isEmpty()) {
+            System.out.println("A USERS tábla üres. (Ha ez hiba, futtasd a seedSampleData() metódust a feltöltéshez!)");
+        } else {
+            System.out.println("Sikeresen lekérdezve " + aktivFelhasznalok.size() + " aktív felhasználó:");
+
+            for (User user : aktivFelhasznalok) {
+
+                System.out.println(user);
             }
-        } catch (SQLException e) {
-            System.err.println("--- HIBA! ---");
-            System.err.println("Nem sikerült csatlakozni az adatbázishoz:");
-            e.printStackTrace();
         }
+
         launch(args);
     }
 
