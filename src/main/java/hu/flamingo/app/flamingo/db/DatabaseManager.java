@@ -116,64 +116,70 @@ public class DatabaseManager {
      * Felelőssége: Csak a PRODUCTS tábla feltöltése minta adatokkal.
      */
     public static void seedSampleData() {
-        System.out.println("Minta adatok feltöltése (Products)...");
+        System.out.println("Minta adatok feltöltése (Csak Üzleti Products)...");
 
-        // --- 1. PRODUCTS FELTÖLTÉSE (A TE KÓDOD INNEN) ---
         String sqlFillProducts = "INSERT OR IGNORE INTO PRODUCTS (product_name, vbs_value, category, segment_id) VALUES "
-                // --- 1. ADAG (Lakossági Vezetékes Net - 11 sor) ---
-                + "('Net_Plusz', 5992, 'FIX_NET', 1), "
-                + "('Net_250', 6264, 'FIX_NET', 1), "
-                + "('Net_500', 7736, 'FIX_NET', 1), "
-                + "('Net_1000', 8390, 'FIX_NET', 1), "
-                + "('Net_2000_Pro', 9690, 'FIX_NET', 1), "
-                + "('Net_4000', 14990, 'FIX_NET', 1), "
-                + "('Spec_Net_Plusz', 4160, 'FIX_NET', 1), "
-                + "('Spec_Net_250', 5024, 'FIX_NET', 1), "
-                + "('Spec_Net_500', 5928, 'FIX_NET', 1), "
-                + "('Spec_Net_1000', 7290, 'FIX_NET', 1), "
-                + "('Spec_Net_2000', 8690, 'FIX_NET', 1), "
-                // --- 2. ADAG (Lakossági TV - 14 sor) ---
-                + "('TTV_IPTV_S', 4600, 'FIX_TV', 1), "
-                + "('TTV_IPTV_M', 6990, 'FIX_TV', 1), "
-                + "('TTV_IPTV_L', 7700, 'FIX_TV', 1), "
-                + "('TTV_IPTV_L_Streaming', 10000, 'FIX_TV', 1), "
-                + "('Spec_TTV_IPTV_M', 4800, 'FIX_TV', 1), "
-                + "('Spec_TTV_IPTV_L', 5510, 'FIX_TV', 1), "
-                + "('Spec_TTV_IPTV_L_Streaming', 7810, 'FIX_TV', 1), "
-                + "('SOLO_TTV_IPTV_S', 4600, 'FIX_TV', 1), "
-                + "('SOLO_TTV_IPTV_M', 6990, 'FIX_TV', 1), "
-                + "('SOLO_TTV_IPTV_L', 7700, 'FIX_TV', 1), "
-                + "('SOLO_TTV_IPTV_L_Streaming', 10000, 'FIX_TV', 1), "
-                + "('Spec_SOLO_TTV_M', 4800, 'FIX_TV', 1), "
-                + "('Spec_SOLO_TTV_L', 5510, 'FIX_TV', 1), "
-                + "('Spec_SOLO_TTV_L_Streaming', 7810, 'FIX_TV', 1), "
-                // --- 3. ADAG (Lakossági Vezetékes Hang - 3 sor) ---
-                + "('Alap', 1992, 'FIX_HANG', 1), "
-                + "('Hoppá Plusz', 4832, 'FIX_HANG', 1), "
-                + "('Spec_Alap', 896, 'FIX_HANG', 1), "
-                // --- 4. ADAG (Lakossági Mobil Hang - 3 sor) ---
-                + "('Mobil_S', 2830, 'MOBIL_HANG', 1), "
-                + "('Mobil_M', 4730, 'MOBIL_HANG', 1), "
-                + "('Mobil_L', 7730, 'MOBIL_HANG', 1), "
-                // --- 5. ADAG (Lakossági Mobil Adat - 5 sor) ---
-                + "('Net_5GB', 2990, 'MOBIL_ADAT', 1), "
-                + "('Net_30GB', 6990, 'MOBIL_ADAT', 1), "
-                + "('Net_L', 11990, 'MOBIL_ADAT', 1), "
-                + "('Net_Mobilnet_20GB', 6990, 'MOBIL_ADAT', 1), "
-                + "('Net_Mobilnet_300GB', 12990, 'MOBIL_ADAT', 1)"; // <-- Most már ide kell a ;
 
-        // --- EZ A BLOKK HIÁNYZOTT TELJESEN ---
-        // (Lefuttatja a fenti 'sqlFillProducts' parancsot)
+
+                + "('ÜzletiMobil_S', 3937, 'MOBIL_HANG', 2), "
+                + "('ÜzletiMobil_M', 4826, 'MOBIL_HANG', 2), "
+                + "('ÜzletiMobil_L', 10541, 'MOBIL_HANG', 2), "
+                + "('ÜzletiMobil_XL', 15367, 'MOBIL_HANG', 2), "
+
+                + "('Üzleti Adat 3GB', 2100, 'MOBIL_ADAT', 2), "
+                + "('Üzleti Adat 8GB', 4625, 'MOBIL_ADAT', 2), "
+                + "('Üzleti Adat 25', 7875, 'MOBIL_ADAT', 2), "
+                + "('Üzleti Korlátlan Plusz', 14700, 'MOBIL_ADAT', 2), "
+                + "('Üzleti Korlátlan Prémium', 16800, 'MOBIL_ADAT', 2), "
+                + "('Üzleti Adat 5GB', 4694, 'MOBIL_ADAT', 2), "
+                + "('Üzleti Adat 10GB', 7560, 'MOBIL_ADAT', 2), "
+                + "('Üzleti Adat 50GB', 15036, 'MOBIL_ADAT', 2), "
+                + "('Üzleti Adat 250GB', 23153, 'MOBIL_ADAT', 2), "
+
+
+                + "('Üzleti Net Plusz', 10731, 'FIX_NET', 2), "
+                + "('Üzleti Net 300', 11099, 'FIX_NET', 2), "
+                + "('Üzleti Net 1000', 16107, 'FIX_NET', 2), "
+                + "('Üzleti Net 1000 Nonstop', 17199, 'FIX_NET', 2), "
+                + "('Üzleti Net 2000 Nonstop', 19268, 'FIX_NET', 2), "
+                + "('Üzleti Net Max', 74939, 'FIX_NET', 2), "
+                + "('Spec. Üzleti Net Plusz', 6426, 'FIX_NET', 2), "
+                + "('Spec. Üzleti Net 300', 6794, 'FIX_NET', 2), "
+                + "('Spec. Üzleti Net 1000', 11802, 'FIX_NET', 2), "
+                + "('Spec. Üzleti Net 1000 Nonstop', 12894, 'FIX_NET', 2), "
+                + "('Spec. Üzleti Net 2000 Nonstop', 14963, 'FIX_NET', 2), "
+                + "('Spec. Üzleti Net Max', 70634, 'FIX_NET', 2), "
+
+
+                + "('IPTV_Alap', 6883, 'FIX_TV', 2), "
+                + "('IPTV_Extra', 12103, 'FIX_TV', 2), "
+                + "('IPTV_S', 4600, 'FIX_TV', 2), "
+                + "('IPTV_M', 6990, 'FIX_TV', 2), "
+                + "('IPTV_L', 7990, 'FIX_TV', 2), "
+                + "('Spec_IPTV_M', 4800, 'FIX_TV', 2), "
+                + "('Spec_IPTV_L', 5800, 'FIX_TV', 2), "
+
+
+                + "('Üzlet_300_Perc', 5347, 'FIX_HANG', 2), "
+                + "('NOLIMIT_Belföld', 9335, 'FIX_HANG', 2), "
+                + "('NOLIMIT_Belföld_Nemzetközi', 11062, 'FIX_HANG', 2), "
+                + "('Dual_Üzlet_300_Perc', 10122, 'FIX_HANG', 2), "
+                + "('Dual_NOLIMIT_Belföld', 14097, 'FIX_HANG', 2), "
+                + "('Közigazgatási', 17577, 'FIX_HANG', 2)";
+
+
         try (java.sql.Connection conn = getConnection();
              java.sql.Statement stmt = conn.createStatement()) {
 
-            // CSAK A TERMÉKEKET futtatjuk
+
             stmt.execute(sqlFillProducts);
 
-            System.out.println("Minta adatok (Products) sikeresen feltöltve!");
+            System.out.println("Minta adatok (Üzleti Products) sikeresen feltöltve!");
 
         } catch (java.sql.SQLException e) {
             System.err.println("Minta adat feltöltési hiba: " + e.getMessage());
         }
+
+
     }
 }

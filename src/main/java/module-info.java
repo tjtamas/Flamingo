@@ -8,7 +8,6 @@ module hu.flamingo.app.flamingo {
     requires net.synedra.validatorfx;
     requires org.kordamp.ikonli.javafx;
     requires org.kordamp.bootstrapfx.core;
-    requires eu.hansolo.tilesfx;
     requires java.sql;
 
     opens hu.flamingo.app.flamingo to javafx.fxml;
