@@ -111,37 +111,66 @@ public class DatabaseManager {
         }
     }
 
+    /**
+     * FELTÖLTÉS MINTA TERMÉKEKKEL (SOLID)
+     * Felelőssége: Csak a PRODUCTS tábla feltöltése minta adatokkal.
+     */
     public static void seedSampleData() {
-        System.out.println("Minta adatok feltöltése (Users, Products)...");
+        System.out.println("Minta adatok feltöltése (Products)...");
 
-        // --- 1. USERS FELTÖLTÉSE
-        String sqlFillUsers = "INSERT OR IGNORE INTO USERS (last_name, first_name) VALUES "
-                + "('Apor', 'Zsuzsanna'), "
-                + "('Balogh', 'Máté'), "
-                + "('Dobrocsi', 'Roland'), "
-                + "('Fekete', 'Gergely'), "
-                + "('Görög', 'Mihály Attila'), "
-                + "('Hanczikné Faggyas', 'Alexandra'), "
-                + "('Hucka', 'Dominik'), "
-                + "('Huszti', 'Szabolcs Károly'), "
-                + "('Lajtai', 'Emilia'), "
-                + "('Morvai', 'Richárd'), "
-                + "('Német', 'Márk'), "
-                + "('Szilágyi', 'Flóra'), "
-                + "('Tóth', 'Gábor'), "
-                + "('Valaczkai', 'János'), "
-                + "('Virsinger', 'Zsolt');";
+        // --- 1. PRODUCTS FELTÖLTÉSE (A TE KÓDOD INNEN) ---
+        String sqlFillProducts = "INSERT OR IGNORE INTO PRODUCTS (product_name, vbs_value, category, segment_id) VALUES "
+                // --- 1. ADAG (Lakossági Vezetékes Net - 11 sor) ---
+                + "('Net_Plusz', 5992, 'FIX_NET', 1), "
+                + "('Net_250', 6264, 'FIX_NET', 1), "
+                + "('Net_500', 7736, 'FIX_NET', 1), "
+                + "('Net_1000', 8390, 'FIX_NET', 1), "
+                + "('Net_2000_Pro', 9690, 'FIX_NET', 1), "
+                + "('Net_4000', 14990, 'FIX_NET', 1), "
+                + "('Spec_Net_Plusz', 4160, 'FIX_NET', 1), "
+                + "('Spec_Net_250', 5024, 'FIX_NET', 1), "
+                + "('Spec_Net_500', 5928, 'FIX_NET', 1), "
+                + "('Spec_Net_1000', 7290, 'FIX_NET', 1), "
+                + "('Spec_Net_2000', 8690, 'FIX_NET', 1), "
+                // --- 2. ADAG (Lakossági TV - 14 sor) ---
+                + "('TTV_IPTV_S', 4600, 'FIX_TV', 1), "
+                + "('TTV_IPTV_M', 6990, 'FIX_TV', 1), "
+                + "('TTV_IPTV_L', 7700, 'FIX_TV', 1), "
+                + "('TTV_IPTV_L_Streaming', 10000, 'FIX_TV', 1), "
+                + "('Spec_TTV_IPTV_M', 4800, 'FIX_TV', 1), "
+                + "('Spec_TTV_IPTV_L', 5510, 'FIX_TV', 1), "
+                + "('Spec_TTV_IPTV_L_Streaming', 7810, 'FIX_TV', 1), "
+                + "('SOLO_TTV_IPTV_S', 4600, 'FIX_TV', 1), "
+                + "('SOLO_TTV_IPTV_M', 6990, 'FIX_TV', 1), "
+                + "('SOLO_TTV_IPTV_L', 7700, 'FIX_TV', 1), "
+                + "('SOLO_TTV_IPTV_L_Streaming', 10000, 'FIX_TV', 1), "
+                + "('Spec_SOLO_TTV_M', 4800, 'FIX_TV', 1), "
+                + "('Spec_SOLO_TTV_L', 5510, 'FIX_TV', 1), "
+                + "('Spec_SOLO_TTV_L_Streaming', 7810, 'FIX_TV', 1), "
+                // --- 3. ADAG (Lakossági Vezetékes Hang - 3 sor) ---
+                + "('Alap', 1992, 'FIX_HANG', 1), "
+                + "('Hoppá Plusz', 4832, 'FIX_HANG', 1), "
+                + "('Spec_Alap', 896, 'FIX_HANG', 1), "
+                // --- 4. ADAG (Lakossági Mobil Hang - 3 sor) ---
+                + "('Mobil_S', 2830, 'MOBIL_HANG', 1), "
+                + "('Mobil_M', 4730, 'MOBIL_HANG', 1), "
+                + "('Mobil_L', 7730, 'MOBIL_HANG', 1), "
+                // --- 5. ADAG (Lakossági Mobil Adat - 5 sor) ---
+                + "('Net_5GB', 2990, 'MOBIL_ADAT', 1), "
+                + "('Net_30GB', 6990, 'MOBIL_ADAT', 1), "
+                + "('Net_L', 11990, 'MOBIL_ADAT', 1), "
+                + "('Net_Mobilnet_20GB', 6990, 'MOBIL_ADAT', 1), "
+                + "('Net_Mobilnet_300GB', 12990, 'MOBIL_ADAT', 1)"; // <-- Most már ide kell a ;
 
-
-
+        // --- EZ A BLOKK HIÁNYZOTT TELJESEN ---
+        // (Lefuttatja a fenti 'sqlFillProducts' parancsot)
         try (java.sql.Connection conn = getConnection();
              java.sql.Statement stmt = conn.createStatement()) {
 
+            // CSAK A TERMÉKEKET futtatjuk
+            stmt.execute(sqlFillProducts);
 
-            stmt.execute(sqlFillUsers);
-
-
-            System.out.println("Minta adatok (Users) sikeresen feltöltve!");
+            System.out.println("Minta adatok (Products) sikeresen feltöltve!");
 
         } catch (java.sql.SQLException e) {
             System.err.println("Minta adat feltöltési hiba: " + e.getMessage());
