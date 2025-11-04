@@ -1,7 +1,7 @@
-package hu.flamingo.app.flamingo.dao;
+package hu.flamingo.app.dao;
 
-import hu.flamingo.app.flamingo.db.DatabaseManager;
-import hu.flamingo.app.flamingo.model.User;
+import hu.flamingo.app.db.DatabaseManager;
+import hu.flamingo.app.model.User;
 
 import java.sql.Connection;
 import java.sql.ResultSet;

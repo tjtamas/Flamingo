@@ -1,7 +1,7 @@
-package hu.flamingo.app.flamingo.dao;
+package hu.flamingo.app.dao;
 
-import hu.flamingo.app.flamingo.db.DatabaseManager;
-import hu.flamingo.app.flamingo.model.Product; // <-- A Product MODEL importálása
+import hu.flamingo.app.db.DatabaseManager;
+import hu.flamingo.app.model.Product; // <-- A Product MODEL importálása
 
 import java.sql.*; // A PreparedStatement miatt a '*' import egyszerűbb
 import java.util.ArrayList;

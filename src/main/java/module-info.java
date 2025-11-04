@@ -9,7 +9,10 @@ module hu.flamingo.app.flamingo {
     requires org.kordamp.ikonli.javafx;
     requires org.kordamp.bootstrapfx.core;
     requires java.sql;
+    requires jakarta.persistence;
+    requires static lombok;
+    requires com.querydsl.jpa;
 
-    opens hu.flamingo.app.flamingo to javafx.fxml;
-    exports hu.flamingo.app.flamingo;
+    opens hu.flamingo.app to javafx.fxml;
+    exports hu.flamingo.app;
 }

@@ -1,4 +1,4 @@
-package hu.flamingo.app.flamingo.model;
+package hu.flamingo.app.model;
 
 public class Segment {
 

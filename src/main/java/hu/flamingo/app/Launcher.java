@@ -1,4 +1,4 @@
-package hu.flamingo.app.flamingo;
+package hu.flamingo.app;
 
 import javafx.application.Application;
 

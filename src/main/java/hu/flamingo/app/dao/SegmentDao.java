@@ -1,7 +1,7 @@
-package hu.flamingo.app.flamingo.dao;
+package hu.flamingo.app.dao;
 
-import hu.flamingo.app.flamingo.db.DatabaseManager;
-import hu.flamingo.app.flamingo.model.Segment; // <-- A Segment MODEL importálása
+import hu.flamingo.app.db.DatabaseManager;
+import hu.flamingo.app.model.Segment; // <-- A Segment MODEL importálása
 
 import java.sql.Connection;
 import java.sql.ResultSet;

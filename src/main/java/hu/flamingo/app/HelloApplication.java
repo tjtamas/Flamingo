@@ -1,20 +1,13 @@
-package hu.flamingo.app.flamingo;
+package hu.flamingo.app;
 
-import hu.flamingo.app.flamingo.dao.ProductDao;
-import hu.flamingo.app.flamingo.dao.SegmentDao;
-import hu.flamingo.app.flamingo.dao.UserDao;
-import hu.flamingo.app.flamingo.db.DatabaseManager;
-import hu.flamingo.app.flamingo.model.Product;
-import hu.flamingo.app.flamingo.model.Segment;
-import hu.flamingo.app.flamingo.model.User;
+import hu.flamingo.app.dao.ProductDao;
+import hu.flamingo.app.model.Product;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.SQLException;
 import java.util.List;
 
 public class HelloApplication extends Application {

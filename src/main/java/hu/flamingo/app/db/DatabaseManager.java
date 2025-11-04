@@ -1,4 +1,4 @@
-package hu.flamingo.app.flamingo.db;
+package hu.flamingo.app.db;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
