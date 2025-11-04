@@ -3,6 +3,7 @@ package hu.flamingo.app.model;
 import jakarta.persistence.*;
 import lombok.*;
 
+
 @Entity
 @Table(name = "USERS")
 @Data
@@ -26,4 +27,13 @@ public class User {
 
     @Column(name = "is_active", nullable = false)
     private boolean isActive = true;
+
+    @Builder(toBuilder = true)
+    public User(String lastName, String firstName, boolean isActive) {
+        this.lastName = lastName;
+        this.firstName = firstName;
+        this.isActive = isActive;
+    }
+
+
 }

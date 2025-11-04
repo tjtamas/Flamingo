@@ -7,21 +7,17 @@ import jakarta.persistence.*;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Consumer;
+import java.util.function.Supplier;
 
-/**
- * Általános QueryDSL-alapú JPA repository.
- * Típusbiztos, stringmentes lekérdezéseket tesz lehetővé.
- *
- * @param <T> az entitás típusa
- */
-public abstract class GenericQuerydslRepository<T> implements IGenericRepository<T> {
+
+public abstract class GenericRepository<T> implements IGenericRepository<T> {
 
     private static final EntityManagerFactory emf =
             Persistence.createEntityManagerFactory("flamingoPU");
 
     private final Class<T> entityClass;
 
-    protected GenericQuerydslRepository(Class<T> entityClass) {
+    protected GenericRepository(Class<T> entityClass) {
         this.entityClass = entityClass;
     }
 
@@ -30,8 +26,11 @@ public abstract class GenericQuerydslRepository<T> implements IGenericRepository
     }
 
     protected JPAQueryFactory getQueryFactory(EntityManager em) {
-        return new JPAQueryFactory(em);
+        Supplier<EntityManager> supplier = () -> em;
+        return new JPAQueryFactory(supplier);
     }
+
+
 
     @Override
     public void save(T entity) {
@@ -47,6 +46,7 @@ public abstract class GenericQuerydslRepository<T> implements IGenericRepository
             em.close();
         }
     }
+
 
     @Override
     public List<T> findAll() {
