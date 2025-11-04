@@ -1,26 +1,22 @@
 package hu.flamingo.app.model;
 
-public class Segment {
+public enum Segment {
 
-    private int segmentId;
-    private String segmentName;
+    LAKOSSAGI("Lakossági"),
+    UZLETI("Üzleti");
 
-    public Segment(int segmentId, String segmentName) {
-        this.segmentId = segmentId;
-        this.segmentName = segmentName;
+    private final String displayName;
+
+    Segment(String displayName) {
+        this.displayName = displayName;
     }
 
-    public int getSegmentId() {
-        return segmentId;
+    public String getDisplayName() {
+        return displayName;
     }
-
-    public String getSegmentName() {
-        return segmentName;
-    }
-
 
     @Override
     public String toString() {
-        return segmentName;
+        return displayName;
     }
 }
