@@ -5,8 +5,8 @@
              https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd"
              version="3.0">
 
-    <!-- 🔹 Fő alkalmazás (GUI / fejlesztői adatbázis) -->
-    <persistence-unit name="flamingoPU" transaction-type="RESOURCE_LOCAL">
+    <!-- 🔹 Tesztadatbázis (JUnit környezet) -->
+    <persistence-unit name="flamingoPU_test" transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 
         <!-- 🔸 Regisztrált entitások -->
@@ -16,17 +16,16 @@
         <properties>
             <!-- 🔹 JDBC driver és adatbázis -->
             <property name="jakarta.persistence.jdbc.driver" value="org.sqlite.JDBC"/>
-            <property name="jakarta.persistence.jdbc.url" value="jdbc:sqlite:data/db/flamingo.db"/>
+            <property name="jakarta.persistence.jdbc.url" value="jdbc:sqlite:data/db/flamingo_test.db"/>
 
             <!-- 🔹 Hibernate dialect (SQLite) -->
             <property name="hibernate.dialect" value="org.hibernate.community.dialect.SQLiteDialect"/>
 
-            <!-- 🔹 Automatikus sémafrissítés -->
-            <property name="hibernate.hbm2ddl.auto" value="update"/>
+            <!-- 🔹 Tesztekhez: minden futáskor új DB -->
+            <property name="hibernate.hbm2ddl.auto" value="create-drop"/>
 
-            <!-- 🔹 Logolás fejlesztéshez -->
-            <property name="hibernate.show_sql" value="true"/>
-            <property name="hibernate.format_sql" value="true"/>
+            <!-- 🔹 Tesztkörnyezetben nem kell SQL log -->
+            <property name="hibernate.show_sql" value="false"/>
         </properties>
     </persistence-unit>
 

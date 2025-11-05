@@ -20,7 +20,7 @@
     </properties>
 
     <dependencies>
-        <!-- JavaFX + Controls -->
+        <!-- JavaFX -->
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-controls</artifactId>
@@ -145,19 +145,14 @@
                 </configuration>
             </plugin>
 
-            <!-- JavaFX Runner -->
+            <!-- ✅ JAVAFX MAVEN PLUGIN (helyesen beállítva) -->
             <plugin>
                 <groupId>org.openjfx</groupId>
                 <artifactId>javafx-maven-plugin</artifactId>
                 <version>0.0.8</version>
-                <executions>
-                    <execution>
-                        <id>default-cli</id>
-                        <configuration>
-                            <mainClass>hu.flamingo.app.flamingo/hu.flamingo.app.HelloApplication</mainClass>
-                        </configuration>
-                    </execution>
-                </executions>
+                <configuration>
+                    <mainClass>hu.flamingo.app.HelloApplication</mainClass>
+                </configuration>
             </plugin>
         </plugins>
     </build>
