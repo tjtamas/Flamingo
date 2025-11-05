@@ -36,12 +36,10 @@ public class UserSeederCSV {
                 // Csak ha van vezetéknév és keresztnév
                 if (lastName.isEmpty() || firstName.isEmpty()) continue;
 
-                repo.save(User.builder()
-                        .lastName(lastName)
-                        .firstName(firstName)
-                        .isActive(isActive)
-                        .build());
+                // --- Új User létrehozása konstruktorral (nem builderrel) ---
+                User user = new User(lastName, firstName, isActive);
 
+                repo.save(user);
                 count++;
             }
 

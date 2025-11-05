@@ -2,32 +2,25 @@
 <persistence xmlns="https://jakarta.ee/xml/ns/persistence"
              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
              xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence
-             https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd"
-             version="3.0">
+                                 https://jakarta.ee/xml/ns/persistence/persistence_3_1.xsd"
+             version="3.1">
 
-    <!-- 🔹 Fő alkalmazás (GUI / fejlesztői adatbázis) -->
     <persistence-unit name="flamingoPU" transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 
-        <!-- 🔸 Regisztrált entitások -->
         <class>hu.flamingo.app.model.User</class>
         <class>hu.flamingo.app.model.Product</class>
 
         <properties>
-            <!-- 🔹 JDBC driver és adatbázis -->
             <property name="jakarta.persistence.jdbc.driver" value="org.sqlite.JDBC"/>
             <property name="jakarta.persistence.jdbc.url" value="jdbc:sqlite:data/db/flamingo.db"/>
 
-            <!-- 🔹 Hibernate dialect (SQLite) -->
             <property name="hibernate.dialect" value="org.hibernate.community.dialect.SQLiteDialect"/>
-
-            <!-- 🔹 Automatikus sémafrissítés -->
             <property name="hibernate.hbm2ddl.auto" value="update"/>
-
-            <!-- 🔹 Logolás fejlesztéshez -->
             <property name="hibernate.show_sql" value="true"/>
             <property name="hibernate.format_sql" value="true"/>
         </properties>
     </persistence-unit>
 
 </persistence>
+

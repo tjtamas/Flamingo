@@ -7,7 +7,7 @@ import jakarta.persistence.*;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Consumer;
-import java.util.function.Supplier;
+
 
 
 public abstract class GenericRepository<T> implements IGenericRepository<T> {
@@ -26,8 +26,7 @@ public abstract class GenericRepository<T> implements IGenericRepository<T> {
     }
 
     protected JPAQueryFactory getQueryFactory(EntityManager em) {
-        Supplier<EntityManager> supplier = () -> em;
-        return new JPAQueryFactory(supplier);
+        return new JPAQueryFactory(em);
     }
 
 

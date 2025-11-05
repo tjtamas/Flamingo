@@ -19,6 +19,7 @@ public class ProductSeederCSV {
 
             while ((line = br.readLine()) != null) {
                 if (first) { first = false; continue; }
+
                 String[] cols = line.split(";", -1);
                 if (cols.length < 4) continue;
 
@@ -29,12 +30,10 @@ public class ProductSeederCSV {
                 String vbsRaw = cols[3].replaceAll("[^0-9]", "");
                 double vbsValue = vbsRaw.isEmpty() ? 0 : Double.parseDouble(vbsRaw);
 
-                repo.save(Product.builder()
-                        .name(name)
-                        .vbsValue(vbsValue)
-                        .category(category)
-                        .segment(segment)
-                        .build());
+                // --- új Product példány, builder helyett konstruktorral ---
+                Product product = new Product(name, vbsValue, category, segment);
+
+                repo.save(product);
                 count++;
             }
 

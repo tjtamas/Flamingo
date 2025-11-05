@@ -1,14 +1,9 @@
 package hu.flamingo.app.model;
 
 import jakarta.persistence.*;
-import lombok.*;
 
 @Entity
 @Table(name = "products")
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
 public class Product {
 
     @Id
@@ -29,8 +24,69 @@ public class Product {
     @Column(name = "segment", nullable = false, length = 20)
     private Segment segment;
 
+    // ----- Constructors -----
+    public Product() {
+    }
+
+    public Product(Long id, String name, double vbsValue, String category, Segment segment) {
+        this.id = id;
+        this.name = name;
+        this.vbsValue = vbsValue;
+        this.category = category;
+        this.segment = segment;
+    }
+
+    public Product(String name, double vbsValue, String category, Segment segment) {
+        this.name = name;
+        this.vbsValue = vbsValue;
+        this.category = category;
+        this.segment = segment;
+    }
+
+    // ----- Getters & Setters -----
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public double getVbsValue() {
+        return vbsValue;
+    }
+
+    public void setVbsValue(double vbsValue) {
+        this.vbsValue = vbsValue;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public Segment getSegment() {
+        return segment;
+    }
+
+    public void setSegment(Segment segment) {
+        this.segment = segment;
+    }
+
+    // ----- toString -----
     @Override
     public String toString() {
-        return name + " - " + segment.getDisplayName();
+        return name + " - " + (segment != null ? segment.getDisplayName() : "n/a");
     }
 }

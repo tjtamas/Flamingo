@@ -27,23 +27,14 @@ class ProductRepositoryTest {
         }
     }
 
-
     @Test
     void testSaveAndFindAll() {
         // Előkészítés
-        Product p1 = Product.builder()
-                .name("Flamingo Basic")
-                .vbsValue(12.5)
-                .category("Lakossági termék")
-                .segment(Segment.LAKOSSAGI)
-                .build();
+        Product p1 = new Product("Flamingo Basic", 12.5,
+                "Lakossági termék", Segment.LAKOSSAGI);
 
-        Product p2 = Product.builder()
-                .name("Flamingo Pro")
-                .vbsValue(25.0)
-                .category("Üzleti szolgáltatás")
-                .segment(Segment.UZLETI)
-                .build();
+        Product p2 = new Product("Flamingo Pro", 25.0,
+                "Üzleti szolgáltatás", Segment.UZLETI);
 
         repo.save(p1);
         repo.save(p2);
@@ -56,19 +47,11 @@ class ProductRepositoryTest {
 
     @Test
     void testFindBySegment() {
-        Product lak = Product.builder()
-                .name("Flamingo Light")
-                .vbsValue(9.99)
-                .category("Lakossági csomag")
-                .segment(Segment.LAKOSSAGI)
-                .build();
+        Product lak = new Product("Flamingo Light", 9.99,
+                "Lakossági csomag", Segment.LAKOSSAGI);
 
-        Product uzl = Product.builder()
-                .name("Flamingo Business")
-                .vbsValue(29.99)
-                .category("Üzleti csomag")
-                .segment(Segment.UZLETI)
-                .build();
+        Product uzl = new Product("Flamingo Business", 29.99,
+                "Üzleti csomag", Segment.UZLETI);
 
         repo.save(lak);
         repo.save(uzl);
