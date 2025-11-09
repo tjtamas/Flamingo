@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="hu.flamingo.app.controller.UserController">
+
+    <top>
+        <Label text="👥 Dolgozók listája"
+               style="-fx-font-size: 18px; -fx-padding: 10;" />
+    </top>
+
+    <center>
+        <TableView fx:id="userTable" prefHeight="420" prefWidth="640">
+            <columns>
+                <TableColumn fx:id="colName" text="Név" prefWidth="420"/>
+                <TableColumn fx:id="colActive" text="Állományban" prefWidth="180"/>
+            </columns>
+        </TableView>
+    </center>
+
+    <bottom>
+        <HBox spacing="10" alignment="center" style="-fx-padding: 10;">
+            <Button fx:id="btnAdd" text="➕ Új dolgozó" disable="true"/>
+            <Button fx:id="btnRemove" text="❌ Törlés" disable="true"/>
+            <Button fx:id="btnRefresh" text="🔄 Frissítés" disable="true"/>
+        </HBox>
+    </bottom>
+</BorderPane>

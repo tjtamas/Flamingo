@@ -13,9 +13,11 @@ public class HelloApplication extends Application {
     public void start(Stage stage) throws IOException {
         DatabaseManager.initializeDatabase();
 
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
-        stage.setTitle("Flamingo");
+        FXMLLoader fxmlLoader = new FXMLLoader(
+                getClass().getResource("/view/UserView.fxml")
+        );
+        Scene scene = new Scene(fxmlLoader.load(), 1000, 700);
+        stage.setTitle("Flamingo 🦩 – Dolgozók");
         stage.setScene(scene);
         stage.show();
     }
