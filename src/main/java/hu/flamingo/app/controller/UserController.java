@@ -6,6 +6,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 
 public class UserController {
@@ -40,7 +41,29 @@ public class UserController {
     }
 
     private void setupButtons() {
-        btnAdd.setOnAction(e -> showAddDialog());
+        btnAdd.setOnAction(e -> {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/hu/flamingo/app/view/UserAddDialog.fxml"));
+                DialogPane pane = loader.load();
+
+                UserAddDialogController dialogController = loader.getController();
+                Dialog<ButtonType> dialog = new Dialog<>();
+                dialog.setDialogPane(pane);
+                dialog.setTitle("Új dolgozó");
+
+                dialog.showAndWait().ifPresent(result -> {
+                    if (result.getButtonData() == ButtonBar.ButtonData.OK_DONE) {
+                        User newUser = dialogController.getNewUser();
+                        if (newUser != null) {
+                            users.add(newUser);
+                        }
+                    }
+                });
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        });
+
         btnRemove.setOnAction(e -> deleteSelectedUser());
         btnRefresh.setOnAction(e -> loadData());
     }

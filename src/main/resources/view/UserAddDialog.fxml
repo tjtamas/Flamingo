@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<DialogPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="hu.flamingo.app.controller.UserAddDialogController"
+            prefWidth="360">
+
+    <headerText>Új dolgozó felvétele</headerText>
+
+    <content>
+        <GridPane hgap="10" vgap="10">
+            <Label text="Vezetéknév:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+            <TextField fx:id="txtLastName" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+            <Label text="Keresztnév:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+            <TextField fx:id="txtFirstName" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+        </GridPane>
+    </content>
+
+    <buttonTypes>
+        <ButtonType text="Mentés" buttonData="OK_DONE"/>
+        <ButtonType text="Mégse" buttonData="CANCEL_CLOSE"/>
+    </buttonTypes>
+</DialogPane>
