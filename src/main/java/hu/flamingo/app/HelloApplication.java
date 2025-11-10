@@ -1,4 +1,5 @@
 package hu.flamingo.app;
+import hu.flamingo.app.config.Config;
 import hu.flamingo.app.db.DatabaseManager;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -14,12 +15,9 @@ public class HelloApplication extends Application {
     public void start(Stage stage) throws IOException {
 
         DatabaseManager.initializeDatabase();
-
-        FXMLLoader fxmlLoader = new FXMLLoader(
-                getClass().getResource("/view/UserView.fxml")
-        );
-        Scene scene = new Scene(fxmlLoader.load(), 1000, 700);
-        stage.setTitle("Flamingo 🦩 – Dolgozók");
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(Config.MAIN_VIEW));
+        Scene scene = new Scene(fxmlLoader.load(), Config.MAIN_WINDOW_WIDTH, Config.MAIN_WINDOW_HEIGHT);
+        stage.setTitle(Config.APP_TITLE);
         stage.setScene(scene);
         stage.show();
     }
