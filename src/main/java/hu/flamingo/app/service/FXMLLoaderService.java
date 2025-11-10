@@ -13,6 +13,6 @@ public class FXMLLoaderService {
     }
 
     public static FXMLLoader loadUserAddDialog() throws IOException {
-        return load(Config.USER_ADD_DIALOG_FXML);
+        return load("/view/UserAddDialog.fxml");
     }
 }
