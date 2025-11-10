@@ -17,6 +17,7 @@ public class UserController {
     @FXML private Button btnAdd;
     @FXML private Button btnRemove;
     @FXML private Button btnRefresh;
+    @FXML private Button btnEdit;
 
     private final UserRepository repo = new UserRepository();
 
@@ -27,25 +28,22 @@ public class UserController {
         setupButtons();
     }
 
-    /** Táblázat oszlopok beállítása */
     private void setupColumns() {
         colName.setCellValueFactory(data ->
                 new SimpleStringProperty(data.getValue().getLastName() + " " + data.getValue().getFirstName()));
     }
 
-    /** Adatok betöltése az adatbázisból */
     private void loadData() {
         userTable.setItems(FXCollections.observableArrayList(repo.findAll()));
     }
 
-    /** Gombok eseménykezelése */
     private void setupButtons() {
         btnAdd.setOnAction(e -> showAddDialog());
         btnRemove.setOnAction(e -> deleteSelectedUser());
         btnRefresh.setOnAction(e -> loadData());
+        btnEdit.setOnAction(e -> showEditDialog());
     }
 
-    /** Új dolgozó felvétele (szolgáltatás használata) */
     private void showAddDialog() {
         try {
             FXMLLoader loader = FXMLLoaderService.loadUserAddDialog();
@@ -69,7 +67,6 @@ public class UserController {
         }
     }
 
-    /** Kijelölt dolgozó törlése */
     private void deleteSelectedUser() {
         User selected = userTable.getSelectionModel().getSelectedItem();
         if (selected != null) {
@@ -79,4 +76,30 @@ public class UserController {
             new Alert(Alert.AlertType.WARNING, "Nincs kijelölt dolgozó!").showAndWait();
         }
     }
+
+    private void showEditDialog() {
+        User selected = userTable.getSelectionModel().getSelectedItem();
+        if (selected == null) {
+            new Alert(Alert.AlertType.WARNING, "Válassz ki egy dolgozót a módosításhoz!").showAndWait();
+            return;
+        }
+
+        TextInputDialog dialog = new TextInputDialog(selected.getLastName() + " " + selected.getFirstName());
+        dialog.setTitle("Dolgozó módosítása");
+        dialog.setHeaderText("Szerkeszd a dolgozó nevét (vezetéknév keresztnév):");
+        dialog.setContentText("Új név:");
+
+        dialog.showAndWait().ifPresent(fullName -> {
+            String[] parts = fullName.trim().split(" ");
+            if (parts.length >= 2) {
+                selected.setLastName(parts[0]);
+                selected.setFirstName(parts[1]);
+                repo.save(selected); // update in DB
+                loadData();
+            } else {
+                new Alert(Alert.AlertType.WARNING, "Kérlek, add meg a teljes nevet (vezetéknév és keresztnév)!").showAndWait();
+            }
+        });
+    }
+
 }

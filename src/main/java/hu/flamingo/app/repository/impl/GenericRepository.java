@@ -32,19 +32,17 @@ public abstract class GenericRepository<T> implements IGenericRepository<T> {
 
     @Override
     public void save(T entity) {
-        executeInsideTransaction(em -> {
-            if (!em.contains(entity)) {
-                Object id = getEntityId(entity);
-                if (id != null) {
-                    // 🔄
-                    em.merge(entity);
-                } else {
-                    // 🆕
-                    em.persist(entity);
-                }
-            }
-        });
+        executeInsideTransaction(em -> em.merge(entity));
     }
+
+
+    // segédfüggvény: ellenőrzi, hogy van-e már ID az adatbázisban
+    private boolean entityHasId(T entity, EntityManager em) {
+        Object id = em.getEntityManagerFactory().getPersistenceUnitUtil().getIdentifier(entity);
+        if (id == null) return false;
+        return em.find(entityClass, id) != null;
+    }
+
 
     @Override
     public Optional<T> findById(int id) {

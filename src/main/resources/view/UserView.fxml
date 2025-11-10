@@ -21,7 +21,8 @@
 
     <bottom>
         <HBox spacing="10" alignment="center" style="-fx-padding: 10;">
-            <Button fx:id="btnAdd" text="➕ Új dolgozó" />
+            <Button fx:id="btnAdd" text="➕ Felvétel" />
+            <Button fx:id="btnEdit" text="✏️ Módosít" />
             <Button fx:id="btnRemove" text="❌ Törlés" />
             <Button fx:id="btnRefresh" text="🔄 Frissítés"/>
         </HBox>
