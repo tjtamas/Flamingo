@@ -30,10 +30,20 @@ public abstract class GenericRepository<T> implements IGenericRepository<T> {
     }
 
 
-
     @Override
     public void save(T entity) {
-        executeInsideTransaction(em -> em.persist(entity));
+        executeInsideTransaction(em -> {
+            if (!em.contains(entity)) {
+                Object id = getEntityId(entity);
+                if (id != null) {
+                    // 🔄
+                    em.merge(entity);
+                } else {
+                    // 🆕
+                    em.persist(entity);
+                }
+            }
+        });
     }
 
     @Override
@@ -86,6 +96,16 @@ public abstract class GenericRepository<T> implements IGenericRepository<T> {
             throw e;
         } finally {
             em.close();
+        }
+    }
+
+    private Object getEntityId(T entity) {
+        try {
+
+            var method = entity.getClass().getMethod("getId");
+            return method.invoke(entity);
+        } catch (Exception e) {
+            return null;
         }
     }
 }

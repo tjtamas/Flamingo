@@ -15,7 +15,6 @@
         <TableView fx:id="userTable" prefHeight="420" prefWidth="640">
             <columns>
                 <TableColumn fx:id="colName" text="Név" prefWidth="420"/>
-                <TableColumn fx:id="colActive" text="Állományban" prefWidth="180"/>
             </columns>
         </TableView>
     </center>
