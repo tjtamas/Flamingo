@@ -7,10 +7,12 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Locale;
 
 public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
+
         DatabaseManager.initializeDatabase();
 
         FXMLLoader fxmlLoader = new FXMLLoader(
