@@ -9,6 +9,7 @@
             xmlns="http://javafx.com/javafx/21"
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="hu.flamingo.app.HelloController"
+            stylesheets="@/css/navigation.css"
             prefHeight="700.0" prefWidth="1000.0">
 
     <left>
@@ -17,7 +18,7 @@
 
             <Button fx:id="navButtonErtesites" text="Értékesítés" prefWidth="170" style="-fx-font-size: 14px;"/>
             <Button fx:id="navButtonRiport" text="Riport" prefWidth="170" style="-fx-font-size: 14px;"/>
-            <Button fx:id="navButtonModositas" text="Adatkezelés" prefWidth="170" style="-fx-font-size: 14px;"/>
+            <Button fx:id="navButtonModositas" text="Termékek" prefWidth="170" style="-fx-font-size: 14px;"/>
             <Button fx:id="navButtonDolgozok" text="Dolgozók" prefWidth="170" style="-fx-font-size: 14px;"/>
         </VBox>
 

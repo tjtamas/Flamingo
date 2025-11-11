@@ -2,6 +2,7 @@ package hu.flamingo.app;
 
 import hu.flamingo.app.config.Config;
 import hu.flamingo.app.service.FXMLLoaderService;
+import hu.flamingo.app.service.NavigationService;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -13,11 +14,19 @@ public class HelloController {
 
     @FXML private BorderPane root;
     @FXML private Button navButtonDolgozok;
+    private final NavigationService navService = new NavigationService();
+
 
     @FXML
     public void initialize() {
-        navButtonDolgozok.setOnAction(e -> loadView(Config.USER_VIEW));
+        navButtonDolgozok.getStyleClass().add("nav-button");
+
+        navButtonDolgozok.setOnAction(e -> {
+            loadView(Config.USER_VIEW);
+            navService.setActive(navButtonDolgozok);
+        });
     }
+
 
     private void loadView(String fxmlPath) {
         try {

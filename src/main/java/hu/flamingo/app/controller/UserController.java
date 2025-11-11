@@ -26,6 +26,7 @@ public class UserController {
         setupColumns();
         loadData();
         setupButtons();
+        setupTableSelection();
     }
 
     private void setupColumns() {
@@ -99,6 +100,18 @@ public class UserController {
             } else {
                 new Alert(Alert.AlertType.WARNING, "Kérlek, add meg a teljes nevet (vezetéknév és keresztnév)!").showAndWait();
             }
+        });
+    }
+
+    private void setupTableSelection() {
+
+        btnRemove.setDisable(true);
+        btnEdit.setDisable(true);
+
+        userTable.getSelectionModel().selectedItemProperty().addListener((obs, oldSel, newSel) -> {
+            boolean hasSelection = newSel != null;
+            btnRemove.setDisable(!hasSelection);
+            btnEdit.setDisable(!hasSelection);
         });
     }
 

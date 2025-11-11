@@ -1,0 +1,14 @@
+.nav-button {
+    -fx-background-color: transparent;
+    -fx-font-size: 14px;
+}
+
+.nav-button:hover {
+    -fx-background-color: #e6f0ff;
+}
+
+.nav-button.active {
+    -fx-background-color: #cce5ff;
+    -fx-border-color: #66b3ff;
+    -fx-border-radius: 4;
+}
