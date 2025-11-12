@@ -1,5 +1,6 @@
 package hu.flamingo.app.controller;
 
+import hu.flamingo.app.config.Config;
 import hu.flamingo.app.model.Product;
 import hu.flamingo.app.model.Segment;
 import hu.flamingo.app.service.ProductService;
@@ -8,6 +9,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 
 import java.util.*;
@@ -179,19 +181,32 @@ public class ProductController {
 
     // ---- CRUD funkciók ----
     private void showAddDialog() {
-        TextInputDialog dialog = new TextInputDialog();
-        dialog.setTitle("Új termék");
-        dialog.setHeaderText("Add meg az új termék nevét:");
-        dialog.setContentText("Név:");
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(Config.PRODUCT_EDIT_DIALOG));
+            DialogPane pane = loader.load();
 
-        dialog.showAndWait().ifPresent(name -> {
-            if (!name.isBlank()) {
-                Product newProduct = new Product(name, 0.0, "Net", Segment.LAKOSSAGI);
-                service.addProduct(newProduct);
-                filterProducts();
-            }
-        });
+            ProductEditDialogController dialogController = loader.getController();
+
+
+            Dialog<ButtonType> dialog = new Dialog<>();
+            dialog.setDialogPane(pane);
+            dialog.setTitle("Új termék hozzáadása");
+
+            dialog.showAndWait().ifPresent(result -> {
+                if (result.getButtonData() == ButtonBar.ButtonData.OK_DONE) {
+                    Product newProduct = dialogController.createNewProduct();
+                    if (newProduct != null) {
+                        service.addProduct(newProduct);
+                        productTable.getItems().add(newProduct);
+                    }
+                }
+            });
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
+
 
     private void deleteSelectedProduct() {
         Product selected = productTable.getSelectionModel().getSelectedItem();
@@ -210,19 +225,33 @@ public class ProductController {
             return;
         }
 
-        TextInputDialog dialog = new TextInputDialog(selected.getName());
-        dialog.setTitle("Termék módosítása");
-        dialog.setHeaderText("Szerkeszd a termék nevét:");
-        dialog.setContentText("Új név:");
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(Config.PRODUCT_EDIT_DIALOG));
+            DialogPane pane = loader.load();
 
-        dialog.showAndWait().ifPresent(newName -> {
-            if (!newName.isBlank()) {
-                selected.setName(newName);
-                service.updateProduct(selected);
-                filterProducts();
-            }
-        });
+            ProductEditDialogController dialogController = loader.getController();
+            dialogController.setProduct(selected);
+
+            Dialog<ButtonType> dialog = new Dialog<>();
+            dialog.setDialogPane(pane);
+            dialog.setTitle("Termék módosítása");
+
+            dialog.showAndWait().ifPresent(result -> {
+                if (result.getButtonData() == ButtonBar.ButtonData.OK_DONE) {
+                    Product updated = dialogController.getUpdatedProduct();
+                    if (updated != null) {
+                        service.updateProduct(updated);
+                        productTable.refresh();
+                    }
+                }
+            });
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
+
+
 
     // ---- Gombok engedélyezése kijelölés szerint ----
     private void setupTableSelection() {
