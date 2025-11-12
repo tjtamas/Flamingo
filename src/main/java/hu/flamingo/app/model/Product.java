@@ -87,6 +87,7 @@ public class Product {
     // ----- toString -----
     @Override
     public String toString() {
-        return name + " - " + (segment != null ? segment.getDisplayName() : "n/a");
+        return name + " (" + segment + ")";
+
     }
 }

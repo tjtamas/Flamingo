@@ -6,7 +6,10 @@ import hu.flamingo.app.model.QProduct;
 import hu.flamingo.app.model.Segment;
 import hu.flamingo.app.repository.interfaces.IProductRepository;
 import jakarta.persistence.EntityManager;
+
 import java.util.List;
+
+import static hu.flamingo.app.model.QProduct.product;
 
 public class ProductRepository extends GenericRepository<Product> implements IProductRepository {
 
@@ -19,14 +22,8 @@ public class ProductRepository extends GenericRepository<Product> implements IPr
         EntityManager em = getEntityManager();
         JPAQueryFactory queryFactory = getQueryFactory(em);
 
-        try {
-            QProduct qProduct = QProduct.product;
-
-            return queryFactory.selectFrom(qProduct)
-                    .where(qProduct.segment.eq(segment))
-                    .fetch();
-        } finally {
-            em.close();
-        }
+        return queryFactory.selectFrom(product)
+                .where(product.segment.eq(segment))
+                .fetch();
     }
 }

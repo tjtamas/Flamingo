@@ -10,6 +10,8 @@ public class Config {
     public static final String MAIN_VIEW = "/view/hello-view.fxml";
     public static final String USER_VIEW = "/view/UserView.fxml";
     public static final String USER_ADD_DIALOG = "/view/UserAddDialog.fxml";
+    public static final String PRODUCT_VIEW = "/view/ProductView.fxml";
+
 
     // --- App metaadatok ---
     public static final String APP_TITLE = "Flamingo 🦩 – Dolgozók";

@@ -30,28 +30,25 @@ class ProductRepositoryTest {
     @Test
     void testSaveAndFindAll() {
         // Előkészítés
-        Product p1 = new Product("Flamingo Basic", 12.5,
-                "Lakossági termék", Segment.LAKOSSAGI);
-
-        Product p2 = new Product("Flamingo Pro", 25.0,
-                "Üzleti szolgáltatás", Segment.UZLETI);
+        Product p1 = new Product("Flamingo Basic", 12.5, "Internet", Segment.LAKOSSAGI);
+        Product p2 = new Product("Flamingo Pro", 25.0, "Telefon", Segment.UZLETI);
 
         repo.save(p1);
         repo.save(p2);
 
         // Tesztelés
         List<Product> all = repo.findAll();
+
         assertFalse(all.isEmpty(), "A findAll() nem adhat üres listát.");
         assertEquals(2, all.size(), "Két terméknek kell lennie az adatbázisban.");
+        assertTrue(all.stream().anyMatch(p -> p.getName().equals("Flamingo Basic")));
+        assertTrue(all.stream().anyMatch(p -> p.getName().equals("Flamingo Pro")));
     }
 
     @Test
     void testFindBySegment() {
-        Product lak = new Product("Flamingo Light", 9.99,
-                "Lakossági csomag", Segment.LAKOSSAGI);
-
-        Product uzl = new Product("Flamingo Business", 29.99,
-                "Üzleti csomag", Segment.UZLETI);
+        Product lak = new Product("Flamingo Light", 9.99, "Internet", Segment.LAKOSSAGI);
+        Product uzl = new Product("Flamingo Business", 29.99, "Telefon", Segment.UZLETI);
 
         repo.save(lak);
         repo.save(uzl);
@@ -60,5 +57,6 @@ class ProductRepositoryTest {
 
         assertEquals(1, lakossagiak.size(), "Csak egy lakossági terméknek kell lennie.");
         assertEquals("Flamingo Light", lakossagiak.get(0).getName());
+        assertEquals(Segment.LAKOSSAGI, lakossagiak.get(0).getSegment());
     }
 }

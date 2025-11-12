@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="hu.flamingo.app.controller.ProductController">
+
+    <top>
+        <VBox spacing="8" style="-fx-padding: 10;">
+            <Label text="📦 Termékek"
+                   style="-fx-font-size: 18px; -fx-padding: 0 0 5 0;" />
+
+            <!-- Szegmens szűrő -->
+            <HBox spacing="8" alignment="center">
+                <Button fx:id="btnLakossagi" text="Lakossági" />
+                <Button fx:id="btnUzleti" text="Üzleti" />
+                <Button fx:id="btnMindSegment" text="Mind" />
+            </HBox>
+
+            <!-- Kategória szűrő -->
+            <HBox spacing="8" alignment="center">
+                <Button fx:id="btnTv" text="TV" />
+                <Button fx:id="btnNet" text="Net" />
+                <Button fx:id="btnTelefon" text="Telefon" />
+                <Button fx:id="btnMobilHang" text="Mobil Hang" />
+                <Button fx:id="btnMobilAdat" text="Mobil Adat" />
+                <Button fx:id="btnMindCategory" text="Mind" />
+            </HBox>
+        </VBox>
+    </top>
+
+    <center>
+        <TableView fx:id="productTable" prefHeight="420" prefWidth="700">
+            <columns>
+                <TableColumn fx:id="colName" text="Név" prefWidth="200" />
+                <TableColumn fx:id="colCategory" text="Kategória" prefWidth="150" />
+                <TableColumn fx:id="colSegment" text="Szegmens" prefWidth="100" />
+                <TableColumn fx:id="colVbsValue" text="VBS érték" prefWidth="100" />
+            </columns>
+        </TableView>
+    </center>
+
+    <bottom>
+        <HBox spacing="10" alignment="center" style="-fx-padding: 10;">
+            <Button fx:id="btnAdd" text="➕ Új" />
+            <Button fx:id="btnEdit" text="✏️ Módosít" />
+            <Button fx:id="btnRemove" text="❌ Töröl" />
+            <Button fx:id="btnRefresh" text="🔄 Alaphelyzet" />
+        </HBox>
+    </bottom>
+</BorderPane>
