@@ -3,7 +3,7 @@ package hu.flamingo.app.config;
 public class Config {
 
     // --- UI méretek ---
-    public static final double MAIN_WINDOW_WIDTH = 650;
+    public static final double MAIN_WINDOW_WIDTH = 825;
     public static final double MAIN_WINDOW_HEIGHT = 500;
 
     // --- FXML utak ---

@@ -1,6 +1,7 @@
 package hu.flamingo.app;
 import hu.flamingo.app.config.Config;
 import hu.flamingo.app.db.DatabaseManager;
+import hu.flamingo.app.db.seed.ProductSeederCSV;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -15,6 +16,13 @@ public class HelloApplication extends Application {
     public void start(Stage stage) throws IOException {
 
         DatabaseManager.initializeDatabase();
+
+        // --- egyszeri CSV-seed (csak ha szükséges) ---
+        boolean seedNeeded = false; // Állítsd false-ra ha már feltöltötted!
+        if (seedNeeded) {
+            String csvPath = "data/csv/Product.csv";
+            new ProductSeederCSV().importFromCSV(csvPath);
+        }
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(Config.MAIN_VIEW));
         Scene scene = new Scene(fxmlLoader.load(), Config.MAIN_WINDOW_WIDTH, Config.MAIN_WINDOW_HEIGHT);
         stage.setTitle(Config.APP_TITLE);

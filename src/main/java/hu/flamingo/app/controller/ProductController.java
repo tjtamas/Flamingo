@@ -63,6 +63,20 @@ public class ProductController {
         colCategory.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getCategory()));
         colSegment.setCellValueFactory(data -> new SimpleObjectProperty<>(data.getValue().getSegment()));
         colVbsValue.setCellValueFactory(data -> new SimpleObjectProperty<>(data.getValue().getVbsValue()));
+
+        colVbsValue.setCellFactory(column -> new TableCell<>() {
+            @Override
+            protected void updateItem(Double value, boolean empty) {
+                super.updateItem(value, empty);
+                if (empty || value == null) {
+                    setText(null);
+                } else {
+                    setText(String.format("%,.0f Ft", value).replace(",", " "));
+                    setStyle("-fx-alignment: CENTER-RIGHT; -fx-font-weight: bold;");
+                }
+            }
+        });
+
         productTable.setItems(products);
     }
 
@@ -83,11 +97,11 @@ public class ProductController {
 
         // Kategória gombok
         Map<Button, String> categoryMap = Map.of(
-                btnTv, "TV",
-                btnNet, "Net",
-                btnTelefon, "Telefon",
-                btnMobilHang, "Mobil Hang",
-                btnMobilAdat, "Mobil Adat"
+                btnTv, "Fix_TV",
+                btnNet, "Fix_Net",
+                btnTelefon, "Fix_Voice",
+                btnMobilHang, "Mobil_Voice",
+                btnMobilAdat, "Mobil_Net"
         );
         categoryMap.forEach((btn, cat) -> btn.setOnAction(e -> toggleCategory(cat, btn)));
 
