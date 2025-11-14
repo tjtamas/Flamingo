@@ -57,4 +57,9 @@ public class ProductService {
         return productRepository.findById(id).orElse(null);
     }
 
+    public List<Product> findByCategory(String category) {
+        return productRepository.findByCategory(category);
+    }
+
+
 }

@@ -23,7 +23,7 @@ class SaleServiceTest {
     @BeforeEach
     void setup() {
         repo = mock(ISaleRepository.class);
-        service = new SaleService(repo);
+        service = new SaleService();
     }
 
     @Test

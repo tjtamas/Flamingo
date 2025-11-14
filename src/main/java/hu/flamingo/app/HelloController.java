@@ -45,9 +45,10 @@ public class HelloController {
         });
 
         navButtonErtesites.setOnAction(e -> {
-            // később ide jön az értékesítés modul
-            System.out.println("Értékesítés modul fejlesztés alatt...");
+            loadView(Config.SALES_VIEW);
+            navService.setActive(navButtonErtesites);
         });
+
 
         navButtonRiport.setOnAction(e -> {
             // később ide jön a riport modul

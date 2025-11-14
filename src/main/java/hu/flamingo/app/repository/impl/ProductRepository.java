@@ -26,4 +26,18 @@ public class ProductRepository extends GenericRepository<Product> implements IPr
                 .where(product.segment.eq(segment))
                 .fetch();
     }
+
+    public List<Product> findByCategory(String category) {
+        EntityManager em = getEntityManager();
+        try {
+            var q = getQueryFactory(em)
+                    .selectFrom(QProduct.product)
+                    .where(QProduct.product.category.eq(category))
+                    .fetch();
+            return q;
+        } finally {
+            em.close();
+        }
+    }
+
 }

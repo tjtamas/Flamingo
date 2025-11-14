@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="hu.flamingo.app.controller.SalesController">
+
+
+    <top>
+        <VBox spacing="10" style="-fx-padding: 10;">
+            <Label text="💰 Értékesítések"
+                   style="-fx-font-size: 18px; -fx-padding: 0 0 5 0;" />
+
+            <!-- Dátum szűrés -->
+            <HBox spacing="10" alignment="center">
+                <Label text="Dátumtól:" />
+                <DatePicker fx:id="dateFrom" />
+
+                <Label text="Dátumig:" />
+                <DatePicker fx:id="dateTo" />
+
+                <Label text="Dolgozó:" />
+                <ComboBox fx:id="cbUserFilter" promptText="Összes dolgozó" />
+
+                <Button fx:id="btnFilter" text="🔍 Szűrés" />
+                <Button fx:id="btnResetFilters" text="🔄 Alaphelyzet" />
+            </HBox>
+        </VBox>
+    </top>
+
+
+    <center>
+        <TableView fx:id="salesTable" prefHeight="420" prefWidth="900">
+            <columns>
+                <TableColumn fx:id="colDate" text="Dátum" prefWidth="100" />
+                <TableColumn fx:id="colUser" text="Dolgozó" prefWidth="150" />
+                <TableColumn fx:id="colMt" text="MT" prefWidth="100" />
+                <TableColumn fx:id="colMsisdn" text="MSISDN" prefWidth="120" />
+                <TableColumn fx:id="colSegment" text="Szegmens" prefWidth="100" />
+
+                <!-- Termékek -->
+                <TableColumn fx:id="colMobilHang" text="Mobil Hang" prefWidth="140" />
+                <TableColumn fx:id="colMobilAdat" text="Mobil Adat" prefWidth="140" />
+                <TableColumn fx:id="colVezNet" text="Vez. Net" prefWidth="140" />
+                <TableColumn fx:id="colVezTv" text="Vez. TV" prefWidth="140" />
+                <TableColumn fx:id="colVezHang" text="Vez. Hang" prefWidth="140" />
+
+                <!-- VBS -->
+                <TableColumn fx:id="colTotalVbs" text="VBS" prefWidth="120" />
+            </columns>
+        </TableView>
+    </center>
+
+
+    <bottom>
+        <VBox spacing="10" alignment="center" style="-fx-padding: 10;">
+
+            <!-- Lapozó sáv -->
+            <HBox spacing="10" alignment="center">
+                <Button fx:id="btnPrevPage" text="⬅ Előző 50" />
+                <Label fx:id="lblPageInfo" text="1/1 oldal" />
+                <Button fx:id="btnNextPage" text="Következő 50 ➡" />
+            </HBox>
+
+            <!-- CRUD gombok -->
+            <HBox spacing="10" alignment="center">
+                <Button fx:id="btnAddSale" text="➕ Új értékesítés" />
+                <Button fx:id="btnEditSale" text="✏️ Módosít" />
+                <Button fx:id="btnDeleteSale" text="❌ Töröl" />
+            </HBox>
+
+        </VBox>
+    </bottom>
+
+</BorderPane>

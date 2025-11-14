@@ -2,15 +2,19 @@ package hu.flamingo.app.service;
 
 import hu.flamingo.app.model.Sale;
 import hu.flamingo.app.model.Product;
+import hu.flamingo.app.repository.impl.SaleRepository;
 import hu.flamingo.app.repository.interfaces.ISaleRepository;
+
+import java.time.LocalDate;
+import java.util.List;
 
 public class SaleService {
 
-    private final ISaleRepository saleRepository;
+    private final ISaleRepository saleRepository = new SaleRepository();
 
-    public SaleService(ISaleRepository saleRepository) {
-        this.saleRepository = saleRepository;
-    }
+    public SaleService() {}
+
+
 
     // ---------- Mentés előtti fő metódus ----------
     public void saveSale(Sale sale) {
@@ -43,6 +47,15 @@ public class SaleService {
 
     }
 
+    public List<Sale> findFilteredPaged(Long userId, LocalDate from, LocalDate to, int limit, int offset) {
+        return saleRepository.findFilteredPaged(userId, from, to, limit, offset);
+    }
+
+    public long countFiltered(Long userId, LocalDate from, LocalDate to) {
+        return saleRepository.countFiltered(userId, from, to);
+    }
+
+
     // ---------- VBS számítás ----------
     private void calculateTotalVbs(Sale sale) {
         int total = 0;
@@ -69,4 +82,6 @@ public class SaleService {
         if (product == null) return 0;
         return (int) product.getVbsValue();
     }
+
+
 }

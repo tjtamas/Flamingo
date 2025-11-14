@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<DialogPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="hu.flamingo.app.controller.SalesEditDialogController">
+
+    <content>
+        <GridPane hgap="10" vgap="10" padding="20">
+
+            <!-- DÁTUM -->
+            <Label text="Dátum:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+            <DatePicker fx:id="dpDate" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+            <!-- DOLGOZÓ -->
+            <Label text="Dolgozó:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+            <ComboBox fx:id="cbUser" prefWidth="220" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+            <!-- MT -->
+            <Label text="MT:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+            <TextField fx:id="txtMt" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+            <!-- MSISDN -->
+            <Label text="MSISDN:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+            <TextField fx:id="txtMsisdn" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+
+            <!-- Szegmens -->
+            <Label text="Szegmens:" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+            <ComboBox fx:id="cbSegment" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+
+            <!-- Termékek -->
+            <Label text="Mobil Hang:" GridPane.rowIndex="5" GridPane.columnIndex="0"/>
+            <ComboBox fx:id="cbMobilHang" prefWidth="220" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
+
+            <Label text="Mobil Adat:" GridPane.rowIndex="6" GridPane.columnIndex="0"/>
+            <ComboBox fx:id="cbMobilAdat" prefWidth="220" GridPane.rowIndex="6" GridPane.columnIndex="1"/>
+
+            <Label text="Vezetékes Net:" GridPane.rowIndex="7" GridPane.columnIndex="0"/>
+            <ComboBox fx:id="cbVezNet" prefWidth="220" GridPane.rowIndex="7" GridPane.columnIndex="1"/>
+
+            <Label text="Vezetékes TV:" GridPane.rowIndex="8" GridPane.columnIndex="0"/>
+            <ComboBox fx:id="cbVezTv" prefWidth="220" GridPane.rowIndex="8" GridPane.columnIndex="1"/>
+
+            <Label text="Vezetékes Hang:" GridPane.rowIndex="9" GridPane.columnIndex="0"/>
+            <ComboBox fx:id="cbVezHang" prefWidth="220" GridPane.rowIndex="9" GridPane.columnIndex="1"/>
+
+            <!-- Digitális -->
+            <Label text="Digitális (Ft):" GridPane.rowIndex="10" GridPane.columnIndex="0"/>
+            <TextField fx:id="txtDigitalis" GridPane.rowIndex="10" GridPane.columnIndex="1"/>
+
+            <!-- Non-core -->
+            <Label text="Non-Core (Ft):" GridPane.rowIndex="11" GridPane.columnIndex="0"/>
+            <TextField fx:id="txtNonCore" GridPane.rowIndex="11" GridPane.columnIndex="1"/>
+
+            <!-- Minőség -->
+            <Label text="Minőség:" GridPane.rowIndex="12" GridPane.columnIndex="0"/>
+            <TextField fx:id="txtQuality" GridPane.rowIndex="12" GridPane.columnIndex="1"/>
+        </GridPane>
+    </content>
+
+
+
+</DialogPane>

@@ -14,4 +14,11 @@ public interface ISaleRepository extends IGenericRepository<Sale> {
     List<Sale> findByDateRange(LocalDate from, LocalDate to);
 
     List<Sale> findByUserAndDateRange(Long userId, LocalDate from, LocalDate to);
+
+    List<Sale> findFilteredPaged(Long userId, LocalDate from, LocalDate to, int limit, int offset);
+
+    long countFiltered(Long userId, LocalDate from, LocalDate to);
+
+
+
 }

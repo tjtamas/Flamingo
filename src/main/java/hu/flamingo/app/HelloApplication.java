@@ -8,8 +8,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.List;
-import java.util.Locale;
+
 
 public class HelloApplication extends Application {
     @Override
@@ -24,9 +23,12 @@ public class HelloApplication extends Application {
             new ProductSeederCSV().importFromCSV(csvPath);
         }
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(Config.MAIN_VIEW));
-        Scene scene = new Scene(fxmlLoader.load(), Config.MAIN_WINDOW_WIDTH, Config.MAIN_WINDOW_HEIGHT);
+        Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle(Config.APP_TITLE);
         stage.setScene(scene);
+
+        stage.setFullScreen(true);
+        stage.setFullScreenExitHint("");
         stage.show();
     }
 

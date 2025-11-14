@@ -12,8 +12,8 @@ public class Config {
     public static final String USER_ADD_DIALOG = "/view/UserAddDialog.fxml";
     public static final String PRODUCT_VIEW = "/view/ProductView.fxml";
     public static final String PRODUCT_EDIT_DIALOG = "/view/ProductEditDialog.fxml";
-
-
+    public static final String SALES_EDIT_DIALOG = "/view/SalesEditDialog.fxml";
+    public static final String SALES_VIEW = "/view/SalesListView.fxml";
 
     // --- App metaadatok ---
     public static final String APP_TITLE = "Flamingo 🦩 – Dolgozók";
